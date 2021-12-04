@@ -21,7 +21,7 @@ def run_program(program_code, i=0, a=0):
     return a, executed
 
 
-with open("input_problem8", "r") as file:
+with open("input_data/input_problem8", "r") as file:
     input_data = file.read().split("\n")
 input_data = [i.split(" ") for i in input_data]
 

@@ -10,7 +10,7 @@ def valid_number(n, options):
     return valid
 
 
-with open("input_problem9", "r") as file:
+with open("input_data/input_problem9", "r") as file:
     input_data = file.read().split("\n")
 input_data = [int(i) for i in input_data]
 

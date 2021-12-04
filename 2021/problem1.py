@@ -1,4 +1,4 @@
-with open("input_problem1", "r") as file:
+with open("input_data/input_problem1", "r") as file:
     input_data = file.readlines()
 input_data = [int(i.rstrip('\n')) for i in input_data]
 

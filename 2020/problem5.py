@@ -17,7 +17,7 @@ def binary_search(ticket, total_seats):
     return seat_coordinate
 
 
-with open("input_problem5", "r") as file:
+with open("input_data/input_problem5", "r") as file:
     input_data = file.read().split("\n")
 
 # Part 1

@@ -1,7 +1,7 @@
 import numpy as np
 import math
 
-with open("input_problem3", "r") as file:
+with open("input_data/input_problem3", "r") as file:
     input_data_tile = file.readlines()
 # Base field
 input_data_tile = [list(i.rstrip()) for i in input_data_tile]

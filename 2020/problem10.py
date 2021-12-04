@@ -1,4 +1,4 @@
-with open("input_problem10", "r") as file:
+with open("input_data/input_problem10", "r") as file:
     input_data = file.read().split("\n")
 input_data = [int(i) for i in input_data]
 input_data.sort()

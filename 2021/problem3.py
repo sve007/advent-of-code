@@ -1,6 +1,6 @@
 import numpy as np
 
-with open("input_problem3", "r") as file:
+with open("input_data/input_problem3", "r") as file:
     input_data = file.read().split("\n")
 
 data = np.array([np.array(list(i)) for i in input_data])

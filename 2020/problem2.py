@@ -27,7 +27,7 @@ def find_indices(string):
     indices = re.findall(pattern="(\d+)", string=string)
     return(indices)
 
-with open("input_problem2", "r") as file:
+with open("input_data/input_problem2", "r") as file:
     input_data = file.readlines()
 
 # part 1

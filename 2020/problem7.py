@@ -27,7 +27,7 @@ def count_bags(target, rules):
 
 
 # Process data
-with open("input_problem7", "r") as file:
+with open("input_data/input_problem7", "r") as file:
     input_data = file.read().split("\n")
 
 input_data = [i.replace(" bags", "").replace(" bag", "").replace(" contain", "").replace(".", "").replace(",", "").replace(" ", "").replace("noother", "") for i in input_data]

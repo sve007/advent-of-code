@@ -1,4 +1,4 @@
-with open("input_problem2", "r") as file:
+with open("input_data/input_problem2", "r") as file:
     input_data = file.read().split("\n")
 input_data = [i.split(" ") for i in input_data]
 
