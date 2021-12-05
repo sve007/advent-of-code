@@ -12,66 +12,50 @@ for i, l in enumerate(input_data):
         input_data[i][j] = [int(j) for j in t.split(",")]
 
 input_data = np.array(input_data)
-max_x = np.max(np.array(input_data)[:, 0])
-max_y = np.max(np.array(input_data)[:, 1])
-grid1 = np.zeros((max_x+3, max_y+3))
+
+
+class GeiserMap:
+
+    def __init__(self, xsize, ysize):
+        self.grid = np.zeros((xsize+1, ysize+1))
+        self.ndangers = 0
+
+    def add_geisers(self, start_coord: tuple, end_coord: tuple, diagonals=False):
+        #  if vertical line
+        if start_coord[0] == end_coord[0]:
+            ycoords = np.arange(min(start_coord[1], end_coord[1]), max(start_coord[1], end_coord[1])+1)
+            for y in ycoords:
+                self.grid[y][start_coord[0]] += 1
+
+        #  if horizontal line
+        elif start_coord[1] == end_coord[1]:
+            xcoords = np.arange(min(start_coord[0], end_coord[0]), max(start_coord[0], end_coord[0])+1)
+            for x in xcoords:
+                self.grid[start_coord[1]][x] += 1
+
+        elif diagonals:
+            #  if diagonal of slope 1, i.e. dx/dy = 1 i.e. dx=dy
+            if abs(end_coord[0]-start_coord[0]) == abs(end_coord[1]-start_coord[1]):
+                xcoords = range(start_coord[0], end_coord[0]+1) if end_coord[0] > start_coord[0] \
+                        else reversed(range(end_coord[0], start_coord[0]+1))
+                ycoords = range(start_coord[1], end_coord[1]+1) if end_coord[1] > start_coord[1] \
+                        else reversed(range(end_coord[1], start_coord[1]+1))
+
+                for x, y in zip(xcoords, ycoords):
+                    self.grid[y][x] += 1
+
+        self.ndangers = (self.grid > 1).sum()
+
+
+gridsize = np.max(input_data)
+map1 = GeiserMap(xsize=gridsize, ysize=gridsize)  # Map for part 1
+map2 = GeiserMap(xsize=gridsize, ysize=gridsize)  # Map for part 2
 
 for line in input_data:
+    xcoord, ycoord = tuple(line[0]), tuple(line[1])
+    map1.add_geisers(xcoord, ycoord)
+    map2.add_geisers(xcoord, ycoord, diagonals=True)
 
-    x0 = line[0][0]
-    x1 = line[1][0]
-    y0 = line[0][1]
-    y1 = line[1][1]
-
-    if x0 == x1:
-        y0, y1 = min(y0, y1), max(y0, y1)
-        coords = np.arange(y0, y1+1)
-        for y in coords:
-            grid1[y][x0] += 1
-
-    elif y0 == y1:
-        x0, x1 = min(x0, x1), max(x0, x1)
-        coords = np.arange(x0, x1+1)
-        for x in coords:
-            grid1[y0][x] += 1
-
-answer1 = (grid1 > 1).sum()
-print(f"Answer to problem 5 part 1: {answer1}")
-
-
-grid2 = np.zeros((max_x+3, max_y+3))
-
-for line in input_data:
-
-    x0 = line[0][0]
-    x1 = line[1][0]
-    y0 = line[0][1]
-    y1 = line[1][1]
-
-    if x0 == x1:
-        y0, y1 = min(y0, y1), max(y0, y1)
-        coords = np.arange(y0, y1+1)
-        for y in coords:
-            grid2[y][x0] += 1
-
-    elif y0 == y1:
-        x0, x1 = min(x0, x1), max(x0, x1)
-        coords = np.arange(x0, x1+1)
-        for x in coords:
-            grid2[y0][x] += 1
-
-    elif abs(x1-x0) == abs(y1-y0):
-
-        if x1 < x0:
-            coordsx = reversed(range(x1, x0+1))
-        else:
-            coordsx = range(x0, x1+1)
-        if y1 < y0:
-            coordsy = reversed(range(y1, y0+1))
-        else:
-            coordsy = range(y0, y1+1)
-        for x, y in zip(coordsx, coordsy):
-            grid2[y][x] += 1
-
-answer2 = (grid2 > 1).sum()
-print(f"Answer to problem 5 part 2: {answer2}")
+print(f"Answer to problem 5 part 1: {map1.ndangers}")
+print(f"Answer to problem 5 part 2: {map2.ndangers}"
+      )
