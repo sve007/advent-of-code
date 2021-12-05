@@ -57,5 +57,4 @@ for line in input_data:
     map2.add_geisers(xcoord, ycoord, diagonals=True)
 
 print(f"Answer to problem 5 part 1: {map1.ndangers}")
-print(f"Answer to problem 5 part 2: {map2.ndangers}"
-      )
+print(f"Answer to problem 5 part 2: {map2.ndangers}")
