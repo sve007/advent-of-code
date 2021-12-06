@@ -58,3 +58,10 @@ for line in input_data:
 
 print(f"Answer to problem 5 part 1: {map1.ndangers}")
 print(f"Answer to problem 5 part 2: {map2.ndangers}")
+
+plot = False
+if plot:
+    import matplotlib.pyplot as plt
+
+    plt.imshow(map2.grid, cmap='magma')
+    plt.show()
