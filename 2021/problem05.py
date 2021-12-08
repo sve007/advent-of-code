@@ -64,4 +64,5 @@ if plot:
     import matplotlib.pyplot as plt
 
     plt.imshow(map2.grid, cmap='magma')
-    plt.show()
+    plt.axis('off')
+    plt.savefig("problem5.png", bbox_inches="tight", pad_inches = 0)
