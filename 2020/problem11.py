@@ -116,6 +116,3 @@ while seating_part2.change:
     seating_part2.update_layout_part2()
 answer2 = seating_part2.occupied_seats
 print(f"Answer to problem 11 part 2: {answer2}")
-
-
-
